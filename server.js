@@ -23,14 +23,11 @@ app.use(
     path.join(path.dirname(fileURLToPath(import.meta.url)), 'public')
     )
     )
-    
-    // mount imported routes
-    app.use('/', indexRouter)
-    app.use('/pokemon', pokemonRouter)
-    
-app.get('/home', function(req, res) {
-  res.render('home')
-})
+
+// mount imported routes
+app.use('/', indexRouter)
+app.use('/pokemon', pokemonRouter)
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404))
