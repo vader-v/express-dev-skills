@@ -18,8 +18,13 @@ function home(req, res){
 function show(req, res){
   res.render('/index')
 }
+function newPoke(req, res) {
+  res.render('pokemon/new')
+}
+
 export {
 	index,
   home,
-  show
+  show,
+  newPoke as new,
 }
