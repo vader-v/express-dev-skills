@@ -1,10 +1,13 @@
 // import npm packages
+import "dotenv/config.js"
 import express from 'express'
 // import * as pokemonData from './data/pokemon-data.js'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import createError from 'http-errors'
 import logger from 'morgan'
+// connect to the database with Mongoose
+import './config/database.js'
 // import routers
 import { router as indexRouter } from './routes/index.js'
 import { router as pokemonRouter } from './routes/pokemon.js'
