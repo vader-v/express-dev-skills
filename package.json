@@ -1,11 +1,16 @@
 {
   "name": "e-gen-replacement",
   "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
   "private": true,
-  "type": "module",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./bin/www.js"
   },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
   "dependencies": {
     "ejs": "^3.1.9",
     "express": "^4.18.2",

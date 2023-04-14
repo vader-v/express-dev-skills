@@ -1,14 +1,13 @@
 // import npm packages
 import express from 'express'
+// import * as pokemonData from './data/pokemon-data.js'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import createError from 'http-errors'
 import logger from 'morgan'
-
 // import routers
 import { router as indexRouter } from './routes/index.js'
-import { router as trainersRouter } from './routes/trainers.js'
-
+import { router as pokemonRouter } from './routes/pokemon.js'
 // create the express app
 const app = express()
 
@@ -22,13 +21,16 @@ app.use(express.urlencoded({ extended: false }))
 app.use(
   express.static(
     path.join(path.dirname(fileURLToPath(import.meta.url)), 'public')
-  )
-)
-
-// mount imported routes
-app.use('/', indexRouter)
-app.use('/trainers', trainersRouter)
-
+    )
+    )
+    
+    // mount imported routes
+    app.use('/', indexRouter)
+    app.use('/pokemon', pokemonRouter)
+    
+app.get('/home', function(req, res) {
+  res.render('home')
+})
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404))
@@ -43,6 +45,10 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500)
   res.render('error')
+})
+
+app.listen(3000, function(){
+  console.log('Listening on port 3000')
 })
 
 export { app }
