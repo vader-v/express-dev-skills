@@ -6,11 +6,13 @@ function index(req, res) {
   })
 }
 function home(req, res){
-  res.render('home')
-  
+  res.render('pokemon/index')
 }
-
+function show(req, res){
+  res.render('/index')
+}
 export {
 	index,
-  home
+  home,
+  show
 }
