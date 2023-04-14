@@ -5,8 +5,8 @@ const router = Router()
 
 // GET localhost:3000/trainers
 router.get('/', function(req, res) {
-  res.render('pokemon/index', {
-    pokemon
+  res.render('/pokemon/index', {
+    pokemon: pokemon
   })
 })
 export { router }
