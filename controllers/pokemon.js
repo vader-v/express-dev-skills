@@ -1,8 +1,15 @@
-import { pokemon } from '../data/pokemon-data.js'
+import { Mon } from '../models/mon.js'
 
 function index(req, res) {
-  res.render('index', {
-    pokemon
+  Mon.find({})
+  .then(pokemon => {
+    res.render('index', {
+      pokemon
+    })
+  })
+  .catch(error => { // If there's an error, console.log it and redirect back home!
+    console.log(error)
+    res.redirect('/')
   })
 }
 function home(req, res){
