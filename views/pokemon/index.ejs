@@ -8,6 +8,15 @@
 </head>
 <body>
   <h1>Pokemon</h1>
-
+  <ul>
+    <% pokemon.forEach(mon => { %>
+      <li>
+				<%= mon.name %> 
+				- 
+				<%= mon.starter ? 'is starter' : 'not starter' %>
+			</li>
+    <% }) %>
+  </ul>
+  <a href="pokemon/index">Poke-Box</a>
 </body>
 </html>

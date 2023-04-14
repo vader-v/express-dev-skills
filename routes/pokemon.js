@@ -9,6 +9,7 @@ router.get('/pokemon', pokemonCtrl.index)
 router.get('/index', pokemonCtrl.home)
 // GET localhost:3000/index/pokemon
 // router.get('/pokemon/index', pokemonCtrl.show)
-
+router.get('/', todosCtrl.index)
+router.get('/new', todosCtrl.new)
 
 export { router }
