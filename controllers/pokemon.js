@@ -3,8 +3,9 @@ import { Mon } from '../models/mon.js'
 function index(req, res) {
   Mon.find({})
   .then(pokemon => {
-    res.render('index', {
-      pokemon
+    res.render('pokemon/index', {
+      pokemon: pokemon,
+      name: 'Poke-Box'
     })
   })
   .catch(error => { // If there's an error, console.log it and redirect back home!
@@ -12,19 +13,44 @@ function index(req, res) {
     res.redirect('/')
   })
 }
-function home(req, res){
-  res.render('pokemon/index')
+function create(req, res) {
+  req.body.nowShowing = !!req.body.nowShowing
+  if (req.body.cast) {
+    req.body.cast = req.body.cast.split(', ')
+  }
+  for (let key in req.body) {
+    if (req.body[key] === '') delete req.body[key]
+  }
+  Mon.create(req.body)
+  .then(mon => {
+    res.redirect('/pokemon')
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/pokemon/new')
+  })
 }
-function show(req, res){
-  res.render('/index')
+function show(req, res) {
+  Mon.findById(req.params.monId)
+  .then(mon => {
+    res.render('pokemon/show', {
+      mon: mon,
+      title: 'Pokemon Detail'
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/pokemon')
+  })
 }
+
 function newPoke(req, res) {
   res.render('pokemon/new')
 }
 
 export {
 	index,
-  home,
+  create,
   show,
   newPoke as new,
 }
