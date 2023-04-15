@@ -14,15 +14,10 @@ function index(req, res) {
   })
 }
 function create(req, res) {
-  req.body.starter = !!req.body.starter
-  if (req.body.type) {
-    req.body.type = req.body.type.split(', ')
-  }
-  for (let key in req.body) {
-    if (req.body[key] === '') delete req.body[key]
-  }
+  req.body.starter = false
   Mon.create(req.body)
   .then(mon => {
+    console.log(mon)
     res.redirect('/pokemon')
   })
   .catch(err => {
@@ -51,13 +46,26 @@ function newPoke(req, res) {
 function deleteMon(req, res) {
   Mon.findByIdAndDelete(req.params.monId)
   .then(mon => {
-    res.redirect('/index')
+    res.redirect('/pokemon')
   })
   .catch(error => {
     console.log(error)
     res.redirect('/pokemon')
   })
 }
+function edit(req, res) {
+  Mon.findById(req.params.monId)
+  .then(mon => {
+    res.render('pokemon/edit', {
+      pokemon
+    })
+  })
+  .catch(error => {
+    console.log(error)
+    res.redirect('/pokemon')
+  })
+}
+
 
 function update(req, res) {
   console.log(req.body)
@@ -82,4 +90,5 @@ export {
   deleteMon as delete,
   newPoke as new,
   update,
+  edit,
 }

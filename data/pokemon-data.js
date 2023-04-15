@@ -7,7 +7,7 @@ const pokemon = [
   {name: 'Bulbasaur', starter: false, _id: 111001},
   {name: 'Squirtle', starter: false, _id: 111007},
   {name: 'Wooper', starter: false, _id: 111194},
-  {name: 'Quagsire', starter: false, _id: 111195}
+  {name: 'Quagsire', starter: false, _id: 111195},
 ]
 
 export {
