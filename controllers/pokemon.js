@@ -5,19 +5,18 @@ function index(req, res) {
   .then(pokemon => {
     res.render('pokemon/index', {
       pokemon: pokemon,
-      name: 'Poke-Box',
       time: req.time,
     })
   })
   .catch(error => { // If there's an error, console.log it and redirect back home!
     console.log(error)
-    res.redirect('/')
+    res.redirect('/pokemon/new')
   })
 }
 function create(req, res) {
-  req.body.nowShowing = !!req.body.nowShowing
-  if (req.body.cast) {
-    req.body.cast = req.body.cast.split(', ')
+  req.body.starter = !!req.body.starter
+  if (req.body.type) {
+    req.body.type = req.body.type.split(', ')
   }
   for (let key in req.body) {
     if (req.body[key] === '') delete req.body[key]
@@ -36,7 +35,7 @@ function show(req, res) {
   .then(mon => {
     res.render('pokemon/show', {
       mon: mon,
-      title: 'Pokemon Detail'
+      title: 'Pokebox'
     })
   })
   .catch(err => {
@@ -49,9 +48,21 @@ function newPoke(req, res) {
   res.render('pokemon/new')
 }
 
+function deleteMon(req, res) {
+  Mon.findByIdAndDelete(req.params.monId)
+  .then(mon => {
+    res.redirect('/pokemon')
+  })
+  .catch(error => {
+    console.log(error)
+    res.redirect('/pokemon')
+  })
+}
+
 export {
 	index,
   create,
   show,
+  deleteMon as delete,
   newPoke as new,
 }

@@ -36,9 +36,9 @@ app.use(express.urlencoded({ extended: false }))
 app.use(
   express.static(
     path.join(path.dirname(fileURLToPath(import.meta.url)), 'public')
-    )
-    )
-
+  )
+)
+app.use(methodOverride('_method'))
 // mount imported routes
 app.use('/', indexRouter)
 app.use('/pokemon', pokemonRouter)

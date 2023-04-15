@@ -7,17 +7,20 @@
   <title>Pokemon</title>
 </head>
 <body>
-  <h1>Pokemon as of <%= time %></h1>
+  <h1>Pokebox as of <%= time %></h1>
   <ul>
-    <% pokemon.forEach(mon => { %>
+    <% pokemon.forEach((mon) => { %>
       <li>
 				<%= mon.name %> 
 				- 
 				<%= mon.starter ? 'is starter' : 'not starter' %>
+        <form action="/pokemon/<%= pokemon._id %>?_method=DELETE" method="POST">
+          <button type="submit">X</button>
+        </form>
 			</li>
     <% }) %>
   </ul>
   <p>first</p>
-  <a href="pokemon/new">Poke-Box</a>
+  <a href="pokemon/new">Add to Poke-Box</a>
 </body>
 </html>
