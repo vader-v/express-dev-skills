@@ -5,7 +5,8 @@ function index(req, res) {
   .then(pokemon => {
     res.render('pokemon/index', {
       pokemon: pokemon,
-      name: 'Poke-Box'
+      name: 'Poke-Box',
+      time: req.time,
     })
   })
   .catch(error => { // If there's an error, console.log it and redirect back home!
