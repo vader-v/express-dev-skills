@@ -6,6 +6,7 @@ const Schema = mongoose.Schema
 const monSchema = new Schema({
   name: String,
   starter: Boolean,
+  type: String,
 })
 
 //Compile schema into model and export it

@@ -19,8 +19,10 @@
         >
           <button type="submit">X</button>
         </form>
-				<a href="../pokemon/<%= mon._id %>"><%= mon.name %></a> 
+				<%= mon.name %>
 				- 
+        <%= mon.type %>
+        - 
 				<%= mon.starter ? 'is starter' : 'not starter' %>
 			</li>
     <% }) %>
