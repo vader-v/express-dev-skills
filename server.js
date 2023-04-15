@@ -6,6 +6,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import createError from 'http-errors'
 import logger from 'morgan'
+import methodOverride from 'method-override'
 // connect to the database with Mongoose
 import './config/database.js'
 // import routers
@@ -23,7 +24,12 @@ app.use(function(req, res, next) {
   req.time = new Date().toLocaleTimeString()
   next()
 })
-
+app.use(
+  express.static(
+    path.join(path.dirname(fileURLToPath(import.meta.url)), 'public')
+  )
+)
+app.use(methodOverride('_method'))  // add this
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
