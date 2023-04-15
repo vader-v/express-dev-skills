@@ -11,12 +11,16 @@
   <ul>
     <% pokemon.forEach((mon) => { %>
       <li>
-				<%= mon.name %> 
-				- 
-				<%= mon.starter ? 'is starter' : 'not starter' %>
-        <form action="/pokemon/<%= pokemon._id %>?_method=DELETE" method="POST">
+        <form 
+          action="/pokemon/<%= pokemon._id %>?_method=DELETE" 
+          method="POST"
+          class="delete-form"
+          >
           <button type="submit">X</button>
         </form>
+        <a href="../pokemon/index/<%= mon._id %>"><%= mon.name %></a>
+				- 
+				<%= mon.starter ? 'is starter' : 'not starter' %>
 			</li>
     <% }) %>
   </ul>

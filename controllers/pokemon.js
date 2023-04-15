@@ -10,7 +10,7 @@ function index(req, res) {
   })
   .catch(error => { // If there's an error, console.log it and redirect back home!
     console.log(error)
-    res.redirect('/pokemon/new')
+    res.redirect('/')
   })
 }
 function create(req, res) {
@@ -51,7 +51,23 @@ function newPoke(req, res) {
 function deleteMon(req, res) {
   Mon.findByIdAndDelete(req.params.monId)
   .then(mon => {
+    res.redirect('/index')
+  })
+  .catch(error => {
+    console.log(error)
     res.redirect('/pokemon')
+  })
+}
+
+function update(req, res) {
+  console.log(req.body)
+  // req.body.starter
+    // a string ==> 'on'
+    // undefined ==> ???
+  req.body.starter = !!req.body.starter
+  Mon.findByIdAndUpdate(req.params.monId, req.body, {new: true})
+  .then(mon => {
+    res.redirect(`/pokemon/${mon._id}`)  
   })
   .catch(error => {
     console.log(error)
@@ -65,4 +81,5 @@ export {
   show,
   deleteMon as delete,
   newPoke as new,
+  update,
 }

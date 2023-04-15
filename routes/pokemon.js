@@ -11,5 +11,7 @@ router.post('/', pokemonCtrl.create)
 // GET localhost:3000/index/pokemon
 router.get('/:monId', pokemonCtrl.show)
 router.delete('/:monId', pokemonCtrl.delete)
+// PUT localhost:3000/pokemon/:monId
+router.put('/:monId', pokemonCtrl.update)
 
 export { router }
