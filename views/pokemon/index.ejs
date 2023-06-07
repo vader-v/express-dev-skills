@@ -12,6 +12,7 @@
   <ul>
     <% pokemon.forEach(mon => { %>
       <li>
+        <a href="../pokemon/<%= mon._id %>">
         <form 
           action="../pokemon/<%= mon._id %>?_method=DELETE"
           class="delete-form"
@@ -19,12 +20,13 @@
         >
           <button type="submit">X</button>
         </form>
-				<%= mon.name %>
-				- 
-        <%= mon.type %>
-        - 
-				<%= mon.starter ? 'is starter' : 'not starter' %>
-			</li>
+          <%= mon.name %>
+          - 
+          <%= mon.type %>
+          - 
+          <%= mon.starter ? 'is starter' : 'not starter' %>
+        </a>
+        </li>
     <% }) %>
   </ul>
   <a href="../pokemon/new">Add To Box-1</a>

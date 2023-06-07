@@ -14,7 +14,7 @@ function index(req, res) {
   })
 }
 function create(req, res) {
-  req.body.starter = false
+  req.body.starter = req.body.starter === 'on'
   Mon.create(req.body)
   .then(mon => {
     console.log(mon)
@@ -57,7 +57,7 @@ function edit(req, res) {
   Mon.findById(req.params.monId)
   .then(mon => {
     res.render('pokemon/edit', {
-      pokemon
+      mon
     })
   })
   .catch(error => {
@@ -72,7 +72,7 @@ function update(req, res) {
   // req.body.starter
     // a string ==> 'on'
     // undefined ==> ???
-  req.body.starter = !!req.body.starter
+  req.body.starter = req.body.starter === 'on'
   Mon.findByIdAndUpdate(req.params.monId, req.body, {new: true})
   .then(mon => {
     res.redirect(`/pokemon/${mon._id}`)  
