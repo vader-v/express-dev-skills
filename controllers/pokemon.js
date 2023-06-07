@@ -53,6 +53,7 @@ function deleteMon(req, res) {
     res.redirect('/pokemon')
   })
 }
+
 function edit(req, res) {
   Mon.findById(req.params.monId)
   .then(mon => {
